@@ -61,8 +61,8 @@ func Equal(a, b []int) bool {
 	return true
 }
 
+// check if the permut already calculated and exists in the list
 func isAlreadyExisted(permuts [][]int, permut []int) bool {
-
 	for _, perm := range permuts {
 		if Equal(perm, permut) {
 			return true
@@ -150,6 +150,7 @@ func main() {
 		for i := 0; i < sawmillsCount; i++ {
 			// for each sawmill read the trunk sequence from input
 			reader_2 := bufio.NewReader(os.Stdin)
+			fmt.Printf("Sawmill %d: ", i+1)
 			trunks, _ := reader_2.ReadString('\n')
 			trunksData := strings.Fields(trunks)
 			var trunkSeq []int
@@ -171,7 +172,7 @@ func main() {
 	// calculating the requested output
 	for i, cs := range Cases {
 		perms_squence := ""
-		fmt.Println("Case", i)
+		fmt.Println("Case", i+1)
 
 		// sort sawmills trunks based on maximum profit
 		sort.Slice(cs.sawmills, func(i, j int) bool {
