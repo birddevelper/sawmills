@@ -48,13 +48,39 @@ func ProfitCalculator(trunks []int) int {
 	return totalProfit
 }
 
+// check if two slices of int are the same
+func Equal(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func isAlreadyExisted(permuts [][]int, permut []int) bool {
+
+	for _, perm := range permuts {
+		if Equal(perm, permut) {
+			return true
+		}
+	}
+
+	return false
+}
+
 // permutation of trunks thrown in river
 func permutation(trunks []int) (permuts [][]int) {
 	var rc func([]int, int)
 	// calculate all permutations of the trunks sequence
 	rc = func(a []int, k int) {
 		if k == len(a) {
-			permuts = append(permuts, append([]int{}, a...))
+			if !isAlreadyExisted(permuts, a) {
+				permuts = append(permuts, append([]int{}, a...))
+			}
 		} else {
 			for i := k; i < len(trunks); i++ {
 				a[k], a[i] = a[i], a[k]

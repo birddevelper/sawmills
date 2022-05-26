@@ -44,3 +44,13 @@ func TestFindPermutionWithMaxProfit(t *testing.T) {
 		}
 	}
 }
+
+func TestPermutation(t *testing.T) {
+	trunks := []int{1, 2, 2}
+	expected := 3
+	perms := permutation(trunks)
+	if len(perms) != expected {
+		t.Errorf("Output %d not equal to expected %d", len(perms), expected)
+	}
+
+}
