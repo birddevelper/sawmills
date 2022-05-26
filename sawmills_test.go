@@ -31,3 +31,16 @@ func TestFindMaxProfit(t *testing.T) {
 		}
 	}
 }
+
+func TestFindPermutionWithMaxProfit(t *testing.T) {
+	var ProfitTests = []ProfitTest{
+		ProfitTest{[]int{1, 2, 3}, 2},
+		ProfitTest{[]int{4, 1}, 1},
+	}
+
+	for _, test := range ProfitTests {
+		if output := findPermutionWithMaxProfit(test.trunk); len(output) != test.expected {
+			t.Errorf("Output %d not equal to expected %d", output, test.expected)
+		}
+	}
+}

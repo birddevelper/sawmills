@@ -74,6 +74,20 @@ func findMaxProfit(trunks []int) int {
 	return maxProfit
 }
 
+func findPermutionWithMaxProfit(trunks []int) [][]int {
+	var permutionWithMaxProfit [][]int
+	maxProfit := findMaxProfit(trunks)
+	trunksPerms := permutation(trunks)
+	for i := 0; i < len(trunksPerms); i++ {
+		profit := ProfitCalculator(trunksPerms[i])
+		if profit == maxProfit {
+			permutionWithMaxProfit = append(permutionWithMaxProfit, trunksPerms[i])
+		}
+	}
+
+	return permutionWithMaxProfit
+}
+
 func main() {
 	type Cases struct {
 		CaseNumber int
