@@ -128,6 +128,7 @@ func main() {
 	}
 
 	for i, cs := range Cases {
+		perms_squence := ""
 		fmt.Println("Case", i)
 		maxPfrofit := 0
 		for _, sawmill := range cs.sawmills {
@@ -135,8 +136,11 @@ func main() {
 			if profit > maxPfrofit {
 				maxPfrofit = profit
 			}
+
+			maxProfitPerms := findPermutionWithMaxProfit(sawmill)
+			perms_squence += strings.Trim(strings.Join(strings.Fields(fmt.Sprint(maxProfitPerms)), " "), "") + ","
 		}
 		fmt.Println("Max Profit :", maxPfrofit)
-
+		fmt.Println("Order:", perms_squence)
 	}
 }
