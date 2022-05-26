@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // returns cut lenght, remained trunck length, remained cutter length
 func cut(trunk int, cutterLength int) (int, int, int) {
 
@@ -12,17 +10,26 @@ func cut(trunk int, cutterLength int) (int, int, int) {
 	}
 }
 
-func ProfitCalculator(trunks []int) {
-
+func ProfitCalculator(trunks []int) int {
+	totalProfit := 0
 	currentcutterLength := 3
-	for i, trunk := range trunks {
+	for _, trunk := range trunks {
 
 		trunkRemainedLength := trunk
 		for trunkRemainedLength > 0 {
-			cutLength, trunkRemainedLength, currentcutterLength := cut(trunkRemainedLength, currentcutterLength)
-			cutterLength = cutterLength - trunk
-			fmt.Println(i, trunk)
+			var cutLength int
+			cutLength, trunkRemainedLength, currentcutterLength = cut(trunkRemainedLength, currentcutterLength)
+			if cutLength == 1 {
+				totalProfit += -1
+			} else if cutLength == 2 {
+				totalProfit += 3
+			} else if cutLength == 3 {
+				totalProfit += 1
+			}
+
 		}
 
 	}
+
+	return totalProfit
 }
