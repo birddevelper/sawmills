@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 // returns cut lenght, remained trunck length, remained cutter length
@@ -89,17 +90,53 @@ func findPermutionWithMaxProfit(trunks []int) [][]int {
 }
 
 func main() {
-	type Cases struct {
+	type Case struct {
 		CaseNumber int
 		sawmills   [][]int
 	}
-	reader := bufio.NewReader(os.Stdin)
+
+	var Cases []Case
+
+	reader_1 := bufio.NewReader(os.Stdin)
 	fmt.Print("Give Z : ")
-	Z, _ := reader.ReadString('\n')
-	sawmillsCount, _ := strconv.Atoi(Z)
-	for i := 0; i < sawmillsCount; i++ {
-		trunks, _ := reader.ReadString('\n')
-		fmt.Printf(trunks)
+	Z, _ := reader_1.ReadString('\n')
+	caseNo := 0
+
+	sawmillsCount, _ := strconv.Atoi(strings.Replace(Z, "\r\n", "", -1))
+
+	for sawmillsCount != 0 {
+
+		caseNo += 1
+		var sawmills [][]int
+		for i := 0; i < sawmillsCount; i++ {
+			reader_2 := bufio.NewReader(os.Stdin)
+			trunks, _ := reader_2.ReadString('\n')
+			trunksData := strings.Fields(trunks)
+			var trunkSeq []int
+			for i := 1; i < len(trunksData); i++ {
+				trunkLength, _ := strconv.Atoi(trunksData[i])
+				trunkSeq = append(trunkSeq, trunkLength)
+			}
+			sawmills = append(sawmills, trunkSeq)
+		}
+		myCase := Case{caseNo, sawmills}
+		Cases = append(Cases, myCase)
+
+		fmt.Print("Give Z : ")
+		Z, _ := reader_1.ReadString('\n')
+		sawmillsCount, _ = strconv.Atoi(strings.Replace(Z, "\r\n", "", -1))
 	}
 
+	for i, cs := range Cases {
+		fmt.Println("Case", i)
+		maxPfrofit := 0
+		for _, sawmill := range cs.sawmills {
+			profit := findMaxProfit(sawmill)
+			if profit > maxPfrofit {
+				maxPfrofit = profit
+			}
+		}
+		fmt.Println("Max Profit :", maxPfrofit)
+
+	}
 }
