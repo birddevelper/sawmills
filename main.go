@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -145,16 +146,21 @@ func main() {
 	for i, cs := range Cases {
 		perms_squence := ""
 		fmt.Println("Case", i)
-		maxPfrofit := 0
-		for _, sawmill := range cs.sawmills {
-			profit := findMaxProfit(sawmill)
-			if profit > maxPfrofit {
-				maxPfrofit = profit
-			}
 
+		// sort sawmills trunks based on maximum profit
+		sort.Slice(cs.sawmills, func(i, j int) bool {
+
+			return findMaxProfit(cs.sawmills[i]) > findMaxProfit(cs.sawmills[j])
+		})
+
+		// max profit of first sawmills trunks sequence is maximum profit between all sawmills
+		maxPfrofit := findMaxProfit(cs.sawmills[0])
+		for _, sawmill := range cs.sawmills {
 			maxProfitPerms := findPermutionWithMaxProfit(sawmill)
 			perms_squence += strings.Trim(strings.Join(strings.Fields(fmt.Sprint(maxProfitPerms)), " "), "") + ","
 		}
+
+		// print result
 		fmt.Println("Max Profit :", maxPfrofit)
 		fmt.Println("Order:", perms_squence)
 	}
