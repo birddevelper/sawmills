@@ -7,6 +7,31 @@ type ProfitTest struct {
 	expected int
 }
 
+type CutTest struct {
+	trunk        int
+	cutterLength int
+	expected     []int
+}
+
+func TestCut(t *testing.T) {
+	var CutTests = []CutTest{
+		CutTest{1, 3, []int{1, 0, 2}},
+		CutTest{2, 3, []int{2, 0, 1}},
+		CutTest{3, 3, []int{3, 0, 3}},
+		CutTest{4, 3, []int{3, 1, 3}},
+		CutTest{3, 1, []int{1, 2, 3}},
+		CutTest{3, 2, []int{2, 1, 3}},
+		CutTest{2, 2, []int{2, 0, 3}}}
+
+	for _, test := range CutTests {
+		if cutLength, remainedTrunk, RemainedCutter := Cut(test.trunk, test.cutterLength); cutLength != test.expected[0] ||
+			remainedTrunk != test.expected[1] || RemainedCutter != test.expected[2] {
+			t.Errorf("Output %v not equal to expected %v", []int{cutLength, remainedTrunk, RemainedCutter}, test.expected)
+		}
+	}
+
+}
+
 func TestCalcSeries(t *testing.T) {
 	var ProfitTests = []ProfitTest{
 		ProfitTest{[]int{2, 3, 1}, 4},

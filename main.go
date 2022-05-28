@@ -10,12 +10,14 @@ import (
 )
 
 // returns cut lenght, remained trunck length, remained cutter length
-func cut(trunk int, cutterLength int) (int, int, int) {
+func Cut(trunk int, cutterLength int) (int, int, int) {
 	// if trunk length is less than cutrer, return whole trunk length, otherwise retuen cutterLength
-	if cutterLength >= trunk {
+	if cutterLength > trunk {
 		return trunk, 0, cutterLength - trunk
-	} else {
+	} else if cutterLength < trunk {
 		return cutterLength, trunk - cutterLength, 3
+	} else {
+		return trunk, 0, 3
 	}
 }
 
@@ -30,7 +32,7 @@ func ProfitCalculator(trunks []int) int {
 		for trunkRemainedLength > 0 {
 			var cutLength int
 			// do cut the trunk
-			cutLength, trunkRemainedLength, currentcutterLength = cut(trunkRemainedLength, currentcutterLength)
+			cutLength, trunkRemainedLength, currentcutterLength = Cut(trunkRemainedLength, currentcutterLength)
 
 			// give bounce or penalty on cutted trunck length
 			if cutLength == 1 {
