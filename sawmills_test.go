@@ -13,6 +13,26 @@ type CutTest struct {
 	expected     []int
 }
 
+type EqualTest struct {
+	a        []int
+	b        []int
+	expected bool
+}
+
+func TestEqual(t *testing.T) {
+	var EqualTests = []EqualTest{
+		EqualTest{[]int{1, 0, 2}, []int{1, 0, 2}, true},
+		EqualTest{[]int{2, 4, 1}, []int{2, 4, 1}, true},
+		EqualTest{[]int{3, 0, 1}, []int{3, 0, 3}, false},
+		EqualTest{[]int{3, 0}, []int{3, 0, 3}, false},
+	}
+	for _, test := range EqualTests {
+		if output := Equal(test.a, test.b); output != test.expected {
+			t.Errorf("Output %t not equal to expected %t", output, test.expected)
+		}
+	}
+}
+
 func TestCut(t *testing.T) {
 	var CutTests = []CutTest{
 		CutTest{1, 3, []int{1, 0, 2}},
