@@ -1,6 +1,6 @@
 ## sawmills 
 
-Golang sample program to solve the problem described in PDF file
+Golang sample program to solve the sawmill problem.
 
 ### How to run 
 
