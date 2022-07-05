@@ -1,6 +1,6 @@
 ## sawmills 
 
-Golang sample program to solve the sawmill problem.
+Golang example program to solve the sawmill problem.
 
 ### How to run 
 
@@ -16,3 +16,6 @@ Excute following command in project root directory :
 ```bash
 go test
 ```
+
+
+
