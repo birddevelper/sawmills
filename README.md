@@ -17,7 +17,8 @@ Excute following command in project root directory :
 go test
 ```
 
-Action added
+Action added.
+Test is done by testing
 
 
 
