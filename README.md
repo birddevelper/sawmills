@@ -16,6 +16,6 @@ Excute following command in project root directory :
 ```bash
 go test
 ```
+This tiny program calculate the premution of bricks can be produced by sawmill.
 
-Action added.
-Test is done by testing.
+I did it by simulation approach.
