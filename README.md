@@ -18,6 +18,4 @@ go test
 ```
 
 Action added.
-Test is done by testing
-Failed test.
-Active.
+Test is done by testing.
