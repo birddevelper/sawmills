@@ -18,4 +18,4 @@ go test
 ```
 This tiny program calculate the premution of bricks can be produced by sawmill.
 
-I did it by simulation.
+I did it by simulation. however failed
