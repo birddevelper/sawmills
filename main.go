@@ -65,6 +65,7 @@ func Equal(a, b []int) bool {
 
 // check if the permut already calculated and exists in the list
 func isAlreadyExisted(permuts [][]int, permut []int) bool {
+	// iterate over permutes
 	for _, perm := range permuts {
 		if Equal(perm, permut) {
 			return true
