@@ -1,4 +1,4 @@
-## sawmills 
+## Sawmills problem
 
 Golang example program to solve the sawmill problem.
 
@@ -17,5 +17,3 @@ Excute following command in project root directory :
 go test
 ```
 This tiny program calculate the premution of bricks can be produced by sawmill.
-
-I did it by simulation. however failed
