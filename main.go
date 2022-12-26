@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// returns cut lenght, remained trunck length, remained cutter length
+// returns cut lenght, remained trunck length and remained cutter length
 func Cut(trunk int, cutterLength int) (int, int, int) {
 	// if trunk length is less than cutrer, return whole trunk length, otherwise retuen cutterLength
 	if cutterLength > trunk {
